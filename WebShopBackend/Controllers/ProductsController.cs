@@ -20,4 +20,10 @@ public class ProductsController : ControllerBase
 
         return Ok(products);
     }
+
+    public ActionResult SeedDatabase()
+    {
+        //TODO: Implement Database seeding
+        return Ok("Database seeded with sample products.");
+    }
 }
