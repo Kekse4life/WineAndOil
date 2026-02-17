@@ -5,7 +5,9 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 const Home = () => (
   <main>
     <section className="relative h-[60vh] bg-neutral-900 flex items-center justify-center text-white overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-red-950 via-stone-900 to-black opacity-80"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-red-950 via-stone-900 to-black opacity-80">
+        <img src="/images/ressidence02.jpeg" alt="Background" className="absolute inset-0 w-full h-full object-cover -z-10" />
+      </div>
       <div className="relative z-10 text-center px-4">
         <h2 className="text-5xl md:text-7xl font-extrabold tracking-tighter mb-4 italic">Vom Hain ins Glas</h2>
         <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto text-gray-300">Echte Handarbeit auf unserem Grundstück.</p>
@@ -36,10 +38,7 @@ const Home = () => (
         </div>
       </div>
       <div className="relative bg-gray-100 h-80 rounded-3xl flex items-center justify-center text-gray-400 italic shadow-inner border border-gray-200 text-center p-6">
-        <div>
-          <p className="text-5xl mb-3">🏡</p>
-          <p className="font-medium text-gray-500">Hier kommt dein <br/> Grundstücks-Foto hin</p>
-        </div>
+        <img src="/images/ressidence01.jpeg" alt="Our Residence" className="w-full h-full object-cover rounded-3xl" />
       </div>
     </section>
   </main>
@@ -58,16 +57,16 @@ const Shop = ({ products, addToCart }) => (
       {products.map((product) => (
         <div key={product.id} className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all border border-gray-100 overflow-hidden flex flex-col">
           <div className="h-48 bg-gray-50 flex items-center justify-center italic text-gray-300 border-b border-gray-50 text-sm">
-            [ Foto: {product.name} ]
+            <img src={`/images/${product.image}`} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
           </div>
           <div className="p-6 flex flex-col flex-grow">
             <h3 className="text-lg font-bold text-gray-800 group-hover:text-red-800 transition-colors">{product.name}</h3>
             <p className="text-2xl font-light text-gray-900 mt-auto">{product.price.toFixed(2)} €</p>
-            <button 
-              onClick={() => addToCart(product)} 
+            <button
+              onClick={() => addToCart(product)}
               className="w-full mt-6 bg-gray-900 text-white py-3 rounded-xl hover:bg-red-800 transition-all font-semibold active:scale-95 shadow-md shadow-gray-200"
             >
-              ＋ In den Warenkorb
+              &#43; In den Warenkorb
             </button>
           </div>
         </div>
@@ -114,7 +113,7 @@ const Cart = ({ cartItems }) => (
 const Impressum = () => (
   <main className="max-w-4xl mx-auto py-16 px-8 text-gray-800">
     <h2 className="text-4xl font-bold mb-8 font-serif border-b pb-4">Impressum</h2>
-    
+
     <div className="space-y-8">
       {/* 1. Informationen gemäß § 5 ECG und Offenlegung gemäß § 25 MedienG */}
       <section>
@@ -152,10 +151,10 @@ const Impressum = () => (
       <section>
         <h3 className="text-xl font-bold mb-2 text-red-800">Online-Streitbeilegung</h3>
         <p className="text-sm text-gray-600 leading-relaxed">
-          Verbraucher haben die Möglichkeit, Beschwerden an die Online-Streitbeilegungsplattform der EU zu richten: 
+          Verbraucher haben die Möglichkeit, Beschwerden an die Online-Streitbeilegungsplattform der EU zu richten:
           <a href="https://ec.europa.eu/consumers/odr/" className="text-red-800 underline ml-1" target="_blank" rel="noreferrer">
             https://ec.europa.eu/consumers/odr/
-          </a>. 
+          </a>.
           Sie können allfällige Beschwerde auch an die oben angegebene E-Mail-Adresse richten.
         </p>
       </section>
@@ -173,10 +172,10 @@ const Impressum = () => (
 // --- HAUPT-APP ---
 function App() {
   const [products] = useState([
-    { id: 1, name: "Premium Olivenöl", price: 18.50 },
-    { id: 2, name: "Rotwein Riserva", price: 24.90 },
-    { id: 3, name: "Weißwein Chardonnay", price: 14.20 },
-    { id: 4, name: "Balsamico Essig", price: 12.00 },
+    { id: 1, name: "Premium Olivenöl", price: 18.50, image: "wine01.jpeg" },
+    { id: 2, name: "Rotwein Riserva", price: 24.90, image: "wine01.jpeg" },
+    { id: 3, name: "Weißwein Chardonnay", price: 14.20, image: "wine01.jpeg" },
+    { id: 4, name: "Balsamico Essig", price: 12.00, image: "wine01.jpeg" },
   ]);
 
   const [cartItems, setCartItems] = useState([]);
@@ -184,13 +183,13 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gray-50 flex flex-col font-sans selection:bg-red-100 selection:text-red-900">
-        
+
         {/* Navigation */}
         <nav className="bg-white/90 backdrop-blur-md shadow-sm p-4 sticky top-0 z-50 flex justify-between items-center px-8 border-b border-gray-100">
           <Link to="/" className="text-2xl font-bold text-red-800 tracking-tighter flex items-center gap-2">
             WINE & OIL
           </Link>
-          
+
           <div className="flex gap-10 items-center font-semibold text-gray-700">
             <Link to="/" className="hover:text-red-800 transition-colors">Home</Link>
             <Link to="/shop" className="hover:text-red-800 transition-colors">Shop</Link>
