@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jckoWgPgf5nz2rOjuUIMHRBP33lOA1npAtmjZHm95qiyvushDINy2T8pr5ZK7yAiPEJWgGW52lUmb79w1eODzA==",
+  "dgSpecHash": "va2DL1zORQs=",
   "success": true,
   "projectFilePath": "/home/daniel/Repositorie/WineAndOil/WebShopBackend/WebshopBackend.csproj",
   "expectedPackageFiles": [
@@ -54,7 +54,10 @@
     "/home/daniel/.nuget/packages/system.reflection.metadata/6.0.1/system.reflection.metadata.6.0.1.nupkg.sha512",
     "/home/daniel/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/home/daniel/.nuget/packages/system.text.encoding.codepages/6.0.0/system.text.encoding.codepages.6.0.0.nupkg.sha512",
-    "/home/daniel/.nuget/packages/system.threading.channels/6.0.0/system.threading.channels.6.0.0.nupkg.sha512"
+    "/home/daniel/.nuget/packages/system.threading.channels/6.0.0/system.threading.channels.6.0.0.nupkg.sha512",
+    "/home/daniel/.nuget/packages/microsoft.netcore.app.ref/8.0.24/microsoft.netcore.app.ref.8.0.24.nupkg.sha512",
+    "/home/daniel/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.24/microsoft.aspnetcore.app.ref.8.0.24.nupkg.sha512",
+    "/home/daniel/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.24/microsoft.netcore.app.host.linux-x64.8.0.24.nupkg.sha512"
   ],
   "logs": []
 }
