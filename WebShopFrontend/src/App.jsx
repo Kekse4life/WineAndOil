@@ -294,7 +294,8 @@ function App() {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch('/api/products', { signal: controller.signal })
+    const apiUrl = import.meta.env.VITE_API_URL ?? 'http://localhost:5003';
+    fetch(`${apiUrl}/api/products`, { signal: controller.signal })
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
