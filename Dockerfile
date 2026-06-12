@@ -6,4 +6,4 @@ EXPOSE 8080
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
 WORKDIR /app/out
 RUN ls -la
-CMD ["sh", "-c", "ls && dotnet *.dll"]
+CMD ["sh", "-c", "exec dotnet $(ls *.dll | head -1)"]
