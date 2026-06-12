@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "cart": "Cart"
+  },
+  "hero": {
+    "title": "From Grove to Glass",
+    "subtitle": "True craftsmanship on our own estate.",
+    "cta": "To the Shop"
+  },
+  "production": {
+    "title": "Our Production",
+    "wine": {
+      "title": "Traditional Harvest",
+      "desc": "Hand-picked on our estate and pressed right on site."
+    },
+    "oil": {
+      "title": "Cold-Pressed Olive Oil",
+      "desc": "Mechanically cold-pressed on the day of harvest for maximum aroma."
+    }
+  },
+  "shop": {
+    "title": "Our Range",
+    "subtitle": "Estate-grown products of the highest quality."
+  },
+  "cart": {
+    "title": "Your Cart",
+    "total": "Total:",
+    "subtitle": "Exclusive Craftsmanship"
+  },
+  "footer": {
+    "home": "Home",
+    "products": "Products",
+    "imprint": "Imprint",
+    "copy": "© 2026 Wine & Oil – A project by Daniel."
+  }
+}

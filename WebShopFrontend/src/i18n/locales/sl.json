@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Domov",
+    "shop": "Trgovina",
+    "cart": "Košarica"
+  },
+  "hero": {
+    "title": "Iz Oljčnika v Kozarec",
+    "subtitle": "Pravo obrtništvo na našem posestvu.",
+    "cta": "V trgovino"
+  },
+  "production": {
+    "title": "Naša Proizvodnja",
+    "wine": {
+      "title": "Tradicionalna Trgatev",
+      "desc": "Ročno pobrano na našem posestvu in stisnjeno neposredno na kraju."
+    },
+    "oil": {
+      "title": "Hladno Stiskano Oljčno Olje",
+      "desc": "Mehansko hladno stiskano na dan trgatve za največjo aromo."
+    }
+  },
+  "shop": {
+    "title": "Naša Ponudba",
+    "subtitle": "Domači izdelki najvišje kakovosti."
+  },
+  "cart": {
+    "title": "Vaša Košarica",
+    "total": "Skupaj:",
+    "subtitle": "Ekskluzivno Obrtništvo"
+  },
+  "footer": {
+    "home": "Domov",
+    "products": "Izdelki",
+    "imprint": "Impressum",
+    "copy": "© 2026 Wine & Oil – Projekt Daniela."
+  }
+}

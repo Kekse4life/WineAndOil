@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Početna",
+    "shop": "Prodavnica",
+    "cart": "Korpa"
+  },
+  "hero": {
+    "title": "Iz Maslinika u Čašu",
+    "subtitle": "Pravi zanat na našem imanju.",
+    "cta": "U prodavnicu"
+  },
+  "production": {
+    "title": "Naša Proizvodnja",
+    "wine": {
+      "title": "Tradicionalna Berba",
+      "desc": "Ručno ubrano na našem imanju i prešano direktno na licu mjesta."
+    },
+    "oil": {
+      "title": "Hladno Cijeđeno Maslinovo Ulje",
+      "desc": "Mehanički hladno cijeđeno na dan berbe za maksimalnu aromu."
+    }
+  },
+  "shop": {
+    "title": "Naš Asortiman",
+    "subtitle": "Proizvodi sa imanja najvišeg kvaliteta."
+  },
+  "cart": {
+    "title": "Vaša Korpa",
+    "total": "Ukupno:",
+    "subtitle": "Ekskluzivni Zanat"
+  },
+  "footer": {
+    "home": "Početna",
+    "products": "Proizvodi",
+    "imprint": "Impressum",
+    "copy": "© 2026 Wine & Oil – Projekat Daniela."
+  }
+}

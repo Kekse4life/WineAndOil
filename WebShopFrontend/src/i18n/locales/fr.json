@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "shop": "Boutique",
+    "cart": "Panier"
+  },
+  "hero": {
+    "title": "Du Verger au Verre",
+    "subtitle": "Un vrai savoir-faire sur notre domaine.",
+    "cta": "Vers la boutique"
+  },
+  "production": {
+    "title": "Notre Production",
+    "wine": {
+      "title": "Vendange Traditionnelle",
+      "desc": "Cueilli à la main sur notre domaine et pressé directement sur place."
+    },
+    "oil": {
+      "title": "Huile d'Olive Pressée à Froid",
+      "desc": "Pressée mécaniquement à froid le jour de la récolte pour un arôme maximal."
+    }
+  },
+  "shop": {
+    "title": "Notre Gamme",
+    "subtitle": "Produits du domaine de la plus haute qualité."
+  },
+  "cart": {
+    "title": "Votre Panier",
+    "total": "Total:",
+    "subtitle": "Artisanat Exclusif"
+  },
+  "footer": {
+    "home": "Accueil",
+    "products": "Produits",
+    "imprint": "Mentions légales",
+    "copy": "© 2026 Wine & Oil – Un projet de Daniel."
+  }
+}

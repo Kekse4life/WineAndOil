@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Negozio",
+    "cart": "Carrello"
+  },
+  "hero": {
+    "title": "Dal Frantoio al Bicchiere",
+    "subtitle": "Vera artigianalità nel nostro podere.",
+    "cta": "Al negozio"
+  },
+  "production": {
+    "title": "La Nostra Produzione",
+    "wine": {
+      "title": "Vendemmia Tradizionale",
+      "desc": "Raccolto a mano nel nostro podere e pressato direttamente in loco."
+    },
+    "oil": {
+      "title": "Olio d'Oliva Estratto a Freddo",
+      "desc": "Estratto meccanicamente a freddo il giorno del raccolto per il massimo aroma."
+    }
+  },
+  "shop": {
+    "title": "Il Nostro Assortimento",
+    "subtitle": "Prodotti del podere della massima qualità."
+  },
+  "cart": {
+    "title": "Il Tuo Carrello",
+    "total": "Totale:",
+    "subtitle": "Artigianato Esclusivo"
+  },
+  "footer": {
+    "home": "Home",
+    "products": "Prodotti",
+    "imprint": "Note legali",
+    "copy": "© 2026 Wine & Oil – Un progetto di Daniel."
+  }
+}

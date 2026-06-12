@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "cart": "Warenkorb"
+  },
+  "hero": {
+    "title": "Vom Hain ins Glas",
+    "subtitle": "Echte Handarbeit auf unserem Grundstück.",
+    "cta": "Zum Shop"
+  },
+  "production": {
+    "title": "Unsere Herstellung",
+    "wine": {
+      "title": "Traditionelle Weinlese",
+      "desc": "Handverlesen auf unserem Grundstück und direkt vor Ort gepresst."
+    },
+    "oil": {
+      "title": "Kaltgepresstes Olivenöl",
+      "desc": "Mechanisch kaltgepresst am Tag der Ernte für maximales Aroma."
+    }
+  },
+  "shop": {
+    "title": "Unser Sortiment",
+    "subtitle": "Hofeigene Erzeugnisse von höchster Qualität."
+  },
+  "cart": {
+    "title": "Dein Warenkorb",
+    "total": "Gesamtsumme:",
+    "subtitle": "Exklusive Handarbeit"
+  },
+  "footer": {
+    "home": "Startseite",
+    "products": "Produkte",
+    "imprint": "Impressum",
+    "copy": "© 2026 Wine & Oil – Ein Projekt von Daniel."
+  }
+}

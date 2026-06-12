@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Početna",
+    "shop": "Trgovina",
+    "cart": "Košarica"
+  },
+  "hero": {
+    "title": "Iz Maslinika u Čašu",
+    "subtitle": "Pravi obrt na našem imanju.",
+    "cta": "U trgovinu"
+  },
+  "production": {
+    "title": "Naša Proizvodnja",
+    "wine": {
+      "title": "Tradicionalna Berba",
+      "desc": "Ručno ubrano na našem imanju i prešano izravno na licu mjesta."
+    },
+    "oil": {
+      "title": "Hladno Prešano Maslinovo Ulje",
+      "desc": "Mehanički hladno prešano na dan berbe za maksimalnu aromu."
+    }
+  },
+  "shop": {
+    "title": "Naš Asortiman",
+    "subtitle": "Proizvodi s imanja najviše kvalitete."
+  },
+  "cart": {
+    "title": "Vaša Košarica",
+    "total": "Ukupno:",
+    "subtitle": "Ekskluzivni Obrt"
+  },
+  "footer": {
+    "home": "Početna",
+    "products": "Proizvodi",
+    "imprint": "Impressum",
+    "copy": "© 2026 Wine & Oil – Projekt Daniela."
+  }
+}

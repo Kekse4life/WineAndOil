@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "shop": "Tienda",
+    "cart": "Carrito"
+  },
+  "hero": {
+    "title": "Del Olivar al Vaso",
+    "subtitle": "Verdadero trabajo artesanal en nuestra finca.",
+    "cta": "A la tienda"
+  },
+  "production": {
+    "title": "Nuestra Producción",
+    "wine": {
+      "title": "Vendimia Tradicional",
+      "desc": "Recogido a mano en nuestra finca y prensado directamente en el lugar."
+    },
+    "oil": {
+      "title": "Aceite de Oliva Prensado en Frío",
+      "desc": "Prensado mecánicamente en frío el día de la cosecha para el máximo aroma."
+    }
+  },
+  "shop": {
+    "title": "Nuestro Surtido",
+    "subtitle": "Productos de la finca de la más alta calidad."
+  },
+  "cart": {
+    "title": "Tu Carrito",
+    "total": "Total:",
+    "subtitle": "Artesanía Exclusiva"
+  },
+  "footer": {
+    "home": "Inicio",
+    "products": "Productos",
+    "imprint": "Aviso legal",
+    "copy": "© 2026 Wine & Oil – Un proyecto de Daniel."
+  }
+}
