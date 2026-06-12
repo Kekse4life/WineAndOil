@@ -134,42 +134,51 @@ const Cart = ({ cartItems, updateQuantity, removeItem }) => {
 };
 
 // --- 4. Impressum ---
-const Impressum = () => (
-  <main className="max-w-4xl mx-auto py-16 px-8 text-gray-800">
-    <h2 className="text-4xl font-bold mb-8 font-serif border-b pb-4">Impressum</h2>
-    <div className="space-y-8">
-      <section>
-        <h3 className="text-xl font-bold mb-2 text-red-800">Informationen gemäß § 5 ECG</h3>
-        <p className="leading-relaxed">Daniel Fida<br />Musterstraße 1<br />1210 Wien<br />Österreich</p>
-      </section>
-      <section>
-        <h3 className="text-xl font-bold mb-2 text-red-800">Kontakt</h3>
-        <p className="leading-relaxed">E-Mail: danielfida08@gmail.com<br />Telefon: +43 677 123 456 78</p>
-      </section>
-      <section className="bg-gray-50 p-6 rounded-xl border border-gray-100">
-        <h3 className="text-xl font-bold mb-4">Weitere Informationen</h3>
-        <ul className="space-y-3 text-sm">
-          <li><strong>Mitglied bei:</strong> Wirtschaftskammer Muster</li>
-          <li><strong>Berufsrecht:</strong> Gewerbeordnung: <a href="https://www.ris.bka.gv.at" target="_blank" rel="noopener noreferrer" className="text-red-800 underline">www.ris.bka.gv.at</a></li>
-          <li><strong>Aufsichtsbehörde:</strong> Bezirkshauptmannschaft Floridsdorf</li>
-          <li><strong>Berufsbezeichnung:</strong> Mustergewerbe</li>
-          <li><strong>Verleihungsstaat:</strong> Österreich</li>
-        </ul>
-      </section>
-      <section>
-        <h3 className="text-xl font-bold mb-2 text-red-800">Online-Streitbeilegung</h3>
-        <p className="text-sm text-gray-600 leading-relaxed">
-          Verbraucher haben die Möglichkeit, Beschwerden an die Online-Streitbeilegungsplattform der EU zu richten:
-          <a href="https://ec.europa.eu/consumers/odr/" className="text-red-800 underline ml-1" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a>.
-        </p>
-      </section>
-      <section>
-        <h3 className="text-xl font-bold mb-2 text-red-800">Urheberrecht</h3>
-        <p className="text-sm text-gray-500 leading-relaxed italic">Die Inhalte dieser Website unterliegen dem Urheberrecht.</p>
-      </section>
-    </div>
-  </main>
-);
+const Impressum = () => {
+  const { t } = useTranslation();
+  return (
+    <main className="max-w-4xl mx-auto py-16 px-8 text-gray-800">
+      <h2 className="text-4xl font-bold mb-8 font-serif border-b pb-4">{t('imprint.title')}</h2>
+      <div className="space-y-8">
+        <section>
+          <h3 className="text-xl font-bold mb-2 text-red-800">{t('imprint.info_title')}</h3>
+          <p className="leading-relaxed">
+            Daniel Fida<br />Musterstraße 1<br />1210 Wien<br />Österreich
+          </p>
+        </section>
+        <section>
+          <h3 className="text-xl font-bold mb-2 text-red-800">{t('imprint.contact_title')}</h3>
+          <p className="leading-relaxed">
+            E-Mail: danielfida08@gmail.com<br />Telefon: +43 677 123 456 78
+          </p>
+        </section>
+        <section className="bg-gray-50 p-6 rounded-xl border border-gray-100">
+          <h3 className="text-xl font-bold mb-4">{t('imprint.more_title')}</h3>
+          <ul className="space-y-3 text-sm">
+            <li><strong>{t('imprint.member')}</strong> Wirtschaftskammer Muster</li>
+            <li><strong>{t('imprint.law')}</strong> Gewerbeordnung: <a href="https://www.ris.bka.gv.at" target="_blank" rel="noopener noreferrer" className="text-red-800 underline">www.ris.bka.gv.at</a></li>
+            <li><strong>{t('imprint.authority')}</strong> Bezirkshauptmannschaft Floridsdorf</li>
+            <li><strong>{t('imprint.profession')}</strong> Mustergewerbe</li>
+            <li><strong>{t('imprint.country')}</strong> Österreich</li>
+          </ul>
+        </section>
+        <section>
+          <h3 className="text-xl font-bold mb-2 text-red-800">{t('imprint.dispute_title')}</h3>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            {t('imprint.dispute_text')}
+            <a href="https://ec.europa.eu/consumers/odr/" className="text-red-800 underline ml-1" target="_blank" rel="noopener noreferrer">
+              https://ec.europa.eu/consumers/odr/
+            </a>.
+          </p>
+        </section>
+        <section>
+          <h3 className="text-xl font-bold mb-2 text-red-800">{t('imprint.copyright_title')}</h3>
+          <p className="text-sm text-gray-500 leading-relaxed italic">{t('imprint.copyright_text')}</p>
+        </section>
+      </div>
+    </main>
+  );
+};
 
 // --- SPRACHWÄHLER ---
 const LanguageSwitcher = ({ onSelect }) => {
