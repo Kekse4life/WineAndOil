@@ -1,11 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "rHDbGB2XruX9hayfXS+dwWgFDe6hnxSAC/z6Gb+UOLw=",
-  "Source": "WebshopBackend",
-  "BasePath": "_content/WebshopBackend",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
-}
+{"Version":1,"Hash":"i6stqB6d91oci9OO2idkrfNzfpuAKgsR87RRWN37wk0=","Source":"WebshopBackend","BasePath":"/","Mode":"Root","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}

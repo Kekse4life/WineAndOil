@@ -19,13 +19,7 @@
 /home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/WebshopBackend.MvcApplicationPartsAssemblyInfo.cache
 /home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/staticwebassets.build.json
 /home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/staticwebassets.development.json
-/home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/staticwebassets/msbuild.WebshopBackend.Microsoft.AspNetCore.StaticWebAssets.props
-/home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/staticwebassets/msbuild.build.WebshopBackend.props
-/home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.WebshopBackend.props
-/home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.WebshopBackend.props
-/home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/staticwebassets.pack.json
 /home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/scopedcss/bundle/WebshopBackend.styles.css
-/home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/WebshopBackend.csproj.CopyComplete
 /home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/WebshopBackend.dll
 /home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/refint/WebshopBackend.dll
 /home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/WebshopBackend.pdb
@@ -132,3 +126,13 @@
 /home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/runtimes/win-arm64/native/e_sqlite3.dll
 /home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/runtimes/win-x64/native/e_sqlite3.dll
 /home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/runtimes/win-x86/native/e_sqlite3.dll
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/WebshopBackend.staticwebassets.endpoints.json
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/rpswa.dswa.cache.json
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/WebshopBackend.sourcelink.json
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/rjimswa.dswa.cache.json
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/rjsmrazor.dswa.cache.json
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/rjsmcshtml.dswa.cache.json
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/staticwebassets.build.json.cache
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/staticwebassets.build.endpoints.json
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/swae.build.ex.cache
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/WebshopB.5564FD46.Up2Date

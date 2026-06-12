@@ -1,24 +1,42 @@
+using Microsoft.EntityFrameworkCore;
+using WebShopBackend.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. CORS Policy definieren
+builder.Services.AddDbContext<ShopContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("Default")));
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("FrontendPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:5173") // Dein React-Port
+        var origin = builder.Configuration["Cors:FrontendOrigin"] ?? "http://localhost:5173";
+        policy.WithOrigins(origin)
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
 });
 
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// 2. CORS aktivieren (VOR MapControllers!)
-app.UseCors("FrontendPolicy");
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ShopContext>();
+    db.Database.Migrate();
+}
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+app.UseCors("FrontendPolicy");
 app.MapControllers();
 
 app.Run();
-
