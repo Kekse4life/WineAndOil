@@ -39,4 +39,5 @@ app.UseHttpsRedirection();
 app.UseCors("FrontendPolicy");
 app.MapControllers();
 
-app.Run();
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5003";
+app.Run($"http://0.0.0.0:{port}");
