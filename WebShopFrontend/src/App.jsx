@@ -140,19 +140,19 @@ const Impressum = () => (
     <div className="space-y-8">
       <section>
         <h3 className="text-xl font-bold mb-2 text-red-800">Informationen gemäß § 5 ECG</h3>
-        <p className="leading-relaxed">Daniel [Dein Nachname]<br />[Deine Straße Hausnummer]<br />[PLZ Ort]<br />Österreich</p>
+        <p className="leading-relaxed">Daniel Fida<br />Musterstraße 1<br />1210 Wien<br />Österreich</p>
       </section>
       <section>
         <h3 className="text-xl font-bold mb-2 text-red-800">Kontakt</h3>
-        <p className="leading-relaxed">E-Mail: [Deine E-Mail-Adresse]<br />Telefon: [Deine Telefonnummer]</p>
+        <p className="leading-relaxed">E-Mail: danielfida08@gmail.com<br />Telefon: +43 677 123 456 78</p>
       </section>
       <section className="bg-gray-50 p-6 rounded-xl border border-gray-100">
         <h3 className="text-xl font-bold mb-4">Weitere Informationen</h3>
         <ul className="space-y-3 text-sm">
-          <li><strong>Mitglied bei:</strong> Wirtschaftskammer [Bundesland]</li>
+          <li><strong>Mitglied bei:</strong> Wirtschaftskammer Muster</li>
           <li><strong>Berufsrecht:</strong> Gewerbeordnung: <a href="https://www.ris.bka.gv.at" target="_blank" rel="noopener noreferrer" className="text-red-800 underline">www.ris.bka.gv.at</a></li>
-          <li><strong>Aufsichtsbehörde:</strong> Bezirkshauptmannschaft [Dein Bezirk]</li>
-          <li><strong>Berufsbezeichnung:</strong> [z.B. Handelsgewerbe]</li>
+          <li><strong>Aufsichtsbehörde:</strong> Bezirkshauptmannschaft Floridsdorf</li>
+          <li><strong>Berufsbezeichnung:</strong> Mustergewerbe</li>
           <li><strong>Verleihungsstaat:</strong> Österreich</li>
         </ul>
       </section>
