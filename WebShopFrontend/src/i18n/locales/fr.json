@@ -34,5 +34,20 @@
     "products": "Produits",
     "imprint": "Mentions légales",
     "copy": "© 2026 Wine & Oil – Un projet de Daniel."
+  },
+  "imprint": {
+  "title": "Legal Notice",
+  "info_title": "Information according to § 5 ECG",
+  "contact_title": "Contact",
+  "more_title": "Further Information",
+  "dispute_title": "Online Dispute Resolution",
+  "dispute_text": "Consumers have the option of submitting complaints to the EU's online dispute resolution platform:",
+  "copyright_title": "Copyright",
+  "copyright_text": "The contents of this website are subject to copyright law.",
+  "member": "Member of:",
+  "law": "Professional law:",
+  "authority": "Supervisory authority:",
+  "profession": "Professional title:",
+  "country": "Awarding country:"
   }
 }
