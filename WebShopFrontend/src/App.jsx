@@ -26,25 +26,25 @@ const Home = () => {
 
       <section className="max-w-7xl mx-auto py-20 px-8 grid md:grid-cols-2 gap-16 items-center">
         <div>
-          <h3 className="text-3xl font-bold text-gray-900 mb-6 font-serif border-b-2 border-red-800 inline-block pb-2">{t('production.title')}</h3>
+          <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 font-serif border-b-2 border-red-800 inline-block pb-2">{t('production.title')}</h3>
           <div className="space-y-8 mt-6">
             <div className="flex gap-4">
               <span className="text-4xl">🍇</span>
               <div>
-                <h4 className="font-bold text-lg text-red-900 font-serif">{t('production.wine.title')}</h4>
-                <p className="text-gray-600">{t('production.wine.desc')}</p>
+                <h4 className="font-bold text-lg text-red-900 dark:text-red-400 font-serif">{t('production.wine.title')}</h4>
+                <p className="text-gray-600 dark:text-gray-400">{t('production.wine.desc')}</p>
               </div>
             </div>
             <div className="flex gap-4">
               <span className="text-4xl">🌿</span>
               <div>
-                <h4 className="font-bold text-lg text-green-900 font-serif">{t('production.oil.title')}</h4>
-                <p className="text-gray-600">{t('production.oil.desc')}</p>
+                <h4 className="font-bold text-lg text-green-900 dark:text-green-400 font-serif">{t('production.oil.title')}</h4>
+                <p className="text-gray-600 dark:text-gray-400">{t('production.oil.desc')}</p>
               </div>
             </div>
           </div>
         </div>
-        <div className="relative bg-gray-100 h-80 rounded-3xl flex items-center justify-center text-gray-400 italic shadow-inner border border-gray-200 text-center p-6">
+        <div className="relative bg-gray-100 dark:bg-gray-800 h-80 rounded-3xl flex items-center justify-center text-gray-400 dark:text-gray-600 italic shadow-inner border border-gray-200 dark:border-gray-700 text-center p-6">
           <img src="/images/ressidence01.jpeg" alt="Our Residence" className="w-full h-full object-cover rounded-3xl" />
         </div>
       </section>
@@ -57,27 +57,27 @@ const Shop = ({ products, loading, error, addToCart }) => {
   const { t } = useTranslation();
   return (
     <main className="max-w-7xl mx-auto py-12 px-8">
-      <div className="flex justify-between items-end mb-12 border-b pb-6">
+      <div className="flex justify-between items-end mb-12 border-b border-gray-200 dark:border-gray-700 pb-6">
         <div>
-          <h2 className="text-4xl font-bold text-gray-900 font-serif">{t('shop.title')}</h2>
-          <p className="text-gray-500 mt-2 italic">{t('shop.subtitle')}</p>
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100 font-serif">{t('shop.title')}</h2>
+          <p className="text-gray-500 dark:text-gray-400 mt-2 italic">{t('shop.subtitle')}</p>
         </div>
       </div>
-      {loading && <p className="text-gray-500 italic">Produkte werden geladen…</p>}
-      {error && <p className="text-red-700">Fehler beim Laden der Produkte: {error}</p>}
+      {loading && <p className="text-gray-500 dark:text-gray-400 italic">Produkte werden geladen…</p>}
+      {error && <p className="text-red-700 dark:text-red-400">Fehler beim Laden der Produkte: {error}</p>}
       {!loading && !error && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {products.map((product) => (
-            <div key={product.id} className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all border border-gray-100 overflow-hidden flex flex-col">
-              <div className="h-48 bg-gray-50 flex items-center justify-center italic text-gray-300 border-b border-gray-50 text-sm">
+            <div key={product.id} className="group bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700 overflow-hidden flex flex-col">
+              <div className="h-48 bg-gray-50 dark:bg-gray-700 flex items-center justify-center italic text-gray-300 dark:text-gray-600 border-b border-gray-50 dark:border-gray-700 text-sm">
                 <img src={`/images/${product.imageUrl}`} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
               </div>
               <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-lg font-bold text-gray-800 group-hover:text-red-800 transition-colors">{product.name}</h3>
-                <p className="text-2xl font-light text-gray-900 mt-auto">{euro.format(product.price)}</p>
+                <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 group-hover:text-red-800 dark:group-hover:text-red-400 transition-colors">{product.name}</h3>
+                <p className="text-2xl font-light text-gray-900 dark:text-gray-100 mt-auto">{euro.format(product.price)}</p>
                 <button
                   onClick={() => addToCart(product)}
-                  className="w-full mt-6 bg-gray-900 text-white py-3 rounded-xl hover:bg-red-800 transition-all font-semibold active:scale-95 shadow-md shadow-gray-200"
+                  className="w-full mt-6 bg-gray-900 dark:bg-gray-700 text-white py-3 rounded-xl hover:bg-red-800 dark:hover:bg-red-700 transition-all font-semibold active:scale-95 shadow-md shadow-gray-200 dark:shadow-gray-900"
                 >
                   &#43; {t('nav.cart')}
                 </button>
@@ -95,36 +95,36 @@ const Cart = ({ cartItems, updateQuantity, removeItem }) => {
   const { t } = useTranslation();
   const total = cartItems.reduce((s, i) => s + i.price * i.quantity, 0);
   return (
-    <main className="max-w-3xl mx-auto py-12 px-8 text-gray-900">
+    <main className="max-w-3xl mx-auto py-12 px-8 text-gray-900 dark:text-gray-100">
       <h2 className="text-3xl font-bold mb-8 font-serif">{t('cart.title')}</h2>
       {cartItems.length === 0 ? (
-        <div className="text-center py-20 bg-white rounded-2xl border-2 border-dashed border-gray-200">
-          <p className="text-gray-400 text-lg">{t('cart.empty', 'Dein Warenkorb ist noch leer.')}</p>
-          <Link to="/shop" className="text-red-800 font-bold mt-4 inline-block hover:underline">{t('cart.cta', 'Jetzt einkaufen')}</Link>
+        <div className="text-center py-20 bg-white dark:bg-gray-800 rounded-2xl border-2 border-dashed border-gray-200 dark:border-gray-700">
+          <p className="text-gray-400 dark:text-gray-500 text-lg">{t('cart.empty', 'Dein Warenkorb ist noch leer.')}</p>
+          <Link to="/shop" className="text-red-800 dark:text-red-400 font-bold mt-4 inline-block hover:underline">{t('cart.cta', 'Jetzt einkaufen')}</Link>
         </div>
       ) : (
         <div className="space-y-4">
           {cartItems.map((item) => (
-            <div key={item.id} className="flex justify-between items-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+            <div key={item.id} className="flex justify-between items-center bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
               <div>
-                <p className="font-bold text-lg">{item.name}</p>
-                <p className="text-sm text-gray-500">{t('cart.subtitle')}</p>
+                <p className="font-bold text-lg text-gray-900 dark:text-gray-100">{item.name}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{t('cart.subtitle')}</p>
               </div>
               <div className="flex items-center gap-4">
-                <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 font-bold" aria-label="Menge verringern">−</button>
-                <span className="w-6 text-center">{item.quantity}</span>
-                <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 font-bold" aria-label="Menge erhöhen">+</button>
-                <p className="font-bold text-gray-900 w-24 text-right">{euro.format(item.price * item.quantity)}</p>
-                <button onClick={() => removeItem(item.id)} className="text-gray-400 hover:text-red-700 ml-2" aria-label="Aus Warenkorb entfernen">✕</button>
+                <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 font-bold" aria-label="Menge verringern">−</button>
+                <span className="w-6 text-center text-gray-900 dark:text-gray-100">{item.quantity}</span>
+                <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 font-bold" aria-label="Menge erhöhen">+</button>
+                <p className="font-bold text-gray-900 dark:text-gray-100 w-24 text-right">{euro.format(item.price * item.quantity)}</p>
+                <button onClick={() => removeItem(item.id)} className="text-gray-400 dark:text-gray-500 hover:text-red-700 dark:hover:text-red-400 ml-2" aria-label="Aus Warenkorb entfernen">✕</button>
               </div>
             </div>
           ))}
-          <div className="bg-gray-900 text-white p-8 rounded-3xl mt-12 shadow-2xl">
-            <div className="flex justify-between text-xl font-bold border-b border-gray-700 pb-4 mb-6">
+          <div className="bg-gray-900 dark:bg-gray-700 text-white p-8 rounded-3xl mt-12 shadow-2xl">
+            <div className="flex justify-between text-xl font-bold border-b border-gray-700 dark:border-gray-600 pb-4 mb-6">
               <span>{t('cart.total')}</span>
               <span>{euro.format(total)}</span>
             </div>
-            <button className="w-full bg-red-800 hover:bg-red-700 py-4 rounded-xl font-bold transition-all transform active:scale-[0.98]">
+            <button className="w-full bg-red-800 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-600 py-4 rounded-xl font-bold transition-all transform active:scale-[0.98]">
               {t('cart.checkout', 'Sicher zur Kasse gehen')}
             </button>
           </div>
@@ -138,43 +138,43 @@ const Cart = ({ cartItems, updateQuantity, removeItem }) => {
 const Impressum = () => {
   const { t } = useTranslation();
   return (
-    <main className="max-w-4xl mx-auto py-16 px-8 text-gray-800">
-      <h2 className="text-4xl font-bold mb-8 font-serif border-b pb-4">{t('imprint.title')}</h2>
+    <main className="max-w-4xl mx-auto py-16 px-8 text-gray-800 dark:text-gray-200">
+      <h2 className="text-4xl font-bold mb-8 font-serif border-b border-gray-300 dark:border-gray-700 pb-4">{t('imprint.title')}</h2>
       <div className="space-y-8">
         <section>
-          <h3 className="text-xl font-bold mb-2 text-red-800">{t('imprint.info_title')}</h3>
+          <h3 className="text-xl font-bold mb-2 text-red-800 dark:text-red-400">{t('imprint.info_title')}</h3>
           <p className="leading-relaxed">
             Daniel Fida<br />Musterstraße 1<br />1210 Wien<br />Österreich
           </p>
         </section>
         <section>
-          <h3 className="text-xl font-bold mb-2 text-red-800">{t('imprint.contact_title')}</h3>
+          <h3 className="text-xl font-bold mb-2 text-red-800 dark:text-red-400">{t('imprint.contact_title')}</h3>
           <p className="leading-relaxed">
             E-Mail: danielfida08@gmail.com<br />Telefon: +43 677 123 456 78
           </p>
         </section>
-        <section className="bg-gray-50 p-6 rounded-xl border border-gray-100">
-          <h3 className="text-xl font-bold mb-4">{t('imprint.more_title')}</h3>
-          <ul className="space-y-3 text-sm">
+        <section className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl border border-gray-100 dark:border-gray-700">
+          <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">{t('imprint.more_title')}</h3>
+          <ul className="space-y-3 text-sm text-gray-800 dark:text-gray-200">
             <li><strong>{t('imprint.member')}</strong> Wirtschaftskammer Muster</li>
-            <li><strong>{t('imprint.law')}</strong> Gewerbeordnung: <a href="https://www.ris.bka.gv.at" target="_blank" rel="noopener noreferrer" className="text-red-800 underline">www.ris.bka.gv.at</a></li>
+            <li><strong>{t('imprint.law')}</strong> Gewerbeordnung: <a href="https://www.ris.bka.gv.at" target="_blank" rel="noopener noreferrer" className="text-red-800 dark:text-red-400 underline">www.ris.bka.gv.at</a></li>
             <li><strong>{t('imprint.authority')}</strong> Bezirkshauptmannschaft Floridsdorf</li>
             <li><strong>{t('imprint.profession')}</strong> Mustergewerbe</li>
             <li><strong>{t('imprint.country')}</strong> Österreich</li>
           </ul>
         </section>
         <section>
-          <h3 className="text-xl font-bold mb-2 text-red-800">{t('imprint.dispute_title')}</h3>
-          <p className="text-sm text-gray-600 leading-relaxed">
+          <h3 className="text-xl font-bold mb-2 text-red-800 dark:text-red-400">{t('imprint.dispute_title')}</h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
             {t('imprint.dispute_text')}
-            <a href="https://ec.europa.eu/consumers/odr/" className="text-red-800 underline ml-1" target="_blank" rel="noopener noreferrer">
+            <a href="https://ec.europa.eu/consumers/odr/" className="text-red-800 dark:text-red-400 underline ml-1" target="_blank" rel="noopener noreferrer">
               https://ec.europa.eu/consumers/odr/
             </a>.
           </p>
         </section>
         <section>
-          <h3 className="text-xl font-bold mb-2 text-red-800">{t('imprint.copyright_title')}</h3>
-          <p className="text-sm text-gray-500 leading-relaxed italic">{t('imprint.copyright_text')}</p>
+          <h3 className="text-xl font-bold mb-2 text-red-800 dark:text-red-400">{t('imprint.copyright_title')}</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed italic">{t('imprint.copyright_text')}</p>
         </section>
       </div>
     </main>
@@ -203,7 +203,7 @@ const LanguageSwitcher = ({ onSelect }) => {
           onClick={() => { i18n.changeLanguage(lang.code); onSelect?.(); }}
           className={`px-2 py-1 text-xs rounded font-bold transition-all ${i18n.language === lang.code
               ? 'bg-red-800 text-white'
-              : 'text-gray-500 hover:text-red-800'
+              : 'text-gray-500 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-400'
             }`}
         >
           {lang.label}
@@ -233,43 +233,43 @@ const BurgerMenu = ({ cartCount, darkMode, setDarkMode }) => {
       {/* Burger Button */}
       <button
         onClick={() => setOpen(!open)}
-        className="flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-lg hover:bg-gray-100 transition-all"
+        className="flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
         aria-label="Menu öffnen"
       >
-        <span className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ${open ? 'rotate-45 translate-y-2' : ''}`} />
-        <span className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
-        <span className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ${open ? '-rotate-45 -translate-y-2' : ''}`} />
+        <span className={`block w-6 h-0.5 bg-gray-800 dark:bg-gray-200 transition-all duration-300 ${open ? 'rotate-45 translate-y-2' : ''}`} />
+        <span className={`block w-6 h-0.5 bg-gray-800 dark:bg-gray-200 transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
+        <span className={`block w-6 h-0.5 bg-gray-800 dark:bg-gray-200 transition-all duration-300 ${open ? '-rotate-45 -translate-y-2' : ''}`} />
       </button>
 
       {/* Dropdown */}
       {open && (
-        <div className="absolute right-0 top-14 w-72 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden z-50">
+        <div className="absolute right-0 top-14 w-72 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50">
 
           {/* Navigation Links */}
-          <div className="p-4 border-b border-gray-100">
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Navigation</p>
+          <div className="p-4 border-b border-gray-100 dark:border-gray-700">
+            <p className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-3">Navigation</p>
             <div className="flex flex-col gap-1">
-              <Link to="/" onClick={() => setOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 text-gray-700 font-semibold transition-all">
+              <Link to="/" onClick={() => setOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold transition-all">
                 🏠 {t('nav.home')}
               </Link>
-              <Link to="/shop" onClick={() => setOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 text-gray-700 font-semibold transition-all">
+              <Link to="/shop" onClick={() => setOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold transition-all">
                 🛍️ {t('nav.shop')}
               </Link>
-              <Link to="/cart" onClick={() => setOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-red-50 text-gray-700 font-semibold transition-all">
+              <Link to="/cart" onClick={() => setOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 text-gray-700 dark:text-gray-300 font-semibold transition-all">
                 🛒 {t('nav.cart')} ({cartCount})
               </Link>
             </div>
           </div>
 
           {/* Sprache */}
-          <div className="p-4 border-b border-gray-100">
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Sprache</p>
+          <div className="p-4 border-b border-gray-100 dark:border-gray-700">
+            <p className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-3">Sprache</p>
             <LanguageSwitcher onSelect={() => setOpen(false)} />
           </div>
 
           {/* 🌙 DARK MODE */}
           <div className="p-4 border-b border-gray-100 dark:border-gray-700">
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Darstellung</p>
+            <p className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-3">Darstellung</p>
             <div className="flex items-center justify-between px-3 py-2.5">
               <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                 {darkMode ? '🌙 Dark Mode' : '☀️ Light Mode'}
@@ -287,8 +287,8 @@ const BurgerMenu = ({ cartCount, darkMode, setDarkMode }) => {
 
           {/* 💱 WÄHRUNG – hier einbauen */}
           <div className="p-4">
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Währung</p>
-            <div className="px-3 py-2.5 rounded-xl bg-gray-50 text-gray-400 text-sm italic">
+            <p className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-3">Währung</p>
+            <div className="px-3 py-2.5 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-400 dark:text-gray-500 text-sm italic">
               {/* TODO: Currency Switcher hier einfügen */}
               Currency Switcher coming soon...
             </div>
@@ -350,8 +350,8 @@ function App() {
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col font-sans selection:bg-red-100 selection:text-red-900">
 
         {/* Navigation */}
-        <nav className="bg-white/90 backdrop-blur-md shadow-sm p-4 sticky top-0 z-50 flex justify-between items-center px-8 border-b border-gray-100">
-          <Link to="/" className="text-2xl font-bold text-red-800 tracking-tighter">
+        <nav className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-sm p-4 sticky top-0 z-50 flex justify-between items-center px-8 border-b border-gray-100 dark:border-gray-700">
+          <Link to="/" className="text-2xl font-bold text-red-800 dark:text-red-400 tracking-tighter">
             WINE & OIL
           </Link>
           <BurgerMenu cartCount={cartCount} darkMode={darkMode} setDarkMode={setDarkMode} />
@@ -367,13 +367,13 @@ function App() {
         </div>
 
         {/* Footer */}
-        <footer className="bg-white border-t border-gray-100 p-12 text-center">
-          <div className="flex justify-center gap-10 mb-6 font-semibold text-gray-500">
-            <Link to="/" className="hover:text-red-800">{t('footer.home')}</Link>
-            <Link to="/shop" className="hover:text-red-800">{t('footer.products')}</Link>
-            <Link to="/impressum" className="hover:text-red-800">{t('footer.imprint')}</Link>
+        <footer className="bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 p-12 text-center">
+          <div className="flex justify-center gap-10 mb-6 font-semibold text-gray-500 dark:text-gray-400">
+            <Link to="/" className="hover:text-red-800 dark:hover:text-red-400">{t('footer.home')}</Link>
+            <Link to="/shop" className="hover:text-red-800 dark:hover:text-red-400">{t('footer.products')}</Link>
+            <Link to="/impressum" className="hover:text-red-800 dark:hover:text-red-400">{t('footer.imprint')}</Link>
           </div>
-          <p className="text-gray-400 text-sm">{t('footer.copy')}</p>
+          <p className="text-gray-400 dark:text-gray-600 text-sm">{t('footer.copy')}</p>
         </footer>
       </div>
     </Router>
