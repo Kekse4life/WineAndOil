@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["dotnet-sdk_8"]
+
+[phases.build]
+cmds = ["dotnet publish WebShopBackend/WebShopBackend.csproj -c Release -o out"]
+
+[start]
+cmd = "dotnet out/WebShopBackend.dll"
