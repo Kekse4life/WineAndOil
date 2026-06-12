@@ -1,6 +1,4 @@
 {
-  "buildCommand": "cd WebShopFrontend && npm install && npm run build",
-  "outputDirectory": "WebShopFrontend/dist",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
