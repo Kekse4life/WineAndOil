@@ -2,8 +2,10 @@ import { useEffect, useMemo, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useRegionDetector } from './hooks/useRegionDetector'
+import { useDarkMode } from './hooks/useDarkMode';
 
 const euro = new Intl.NumberFormat('de-AT', { style: 'currency', currency: 'EUR' });
+const [darkMode, setDarkMode] = useDarkMode();
 
 // --- 1. KOMPONENTE: HOME ---
 const Home = () => {
@@ -69,7 +71,7 @@ const Shop = ({ products, loading, error, addToCart }) => {
           {products.map((product) => (
             <div key={product.id} className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all border border-gray-100 overflow-hidden flex flex-col">
               <div className="h-48 bg-gray-50 flex items-center justify-center italic text-gray-300 border-b border-gray-50 text-sm">
-                <img src={`/images/${product.imageUrl}`} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+                <img src={`/images/${product.imageUrl}`} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
               </div>
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-lg font-bold text-gray-800 group-hover:text-red-800 transition-colors">{product.name}</h3>
@@ -200,11 +202,10 @@ const LanguageSwitcher = ({ onSelect }) => {
         <button
           key={lang.code}
           onClick={() => { i18n.changeLanguage(lang.code); onSelect?.(); }}
-          className={`px-2 py-1 text-xs rounded font-bold transition-all ${
-            i18n.language === lang.code
+          className={`px-2 py-1 text-xs rounded font-bold transition-all ${i18n.language === lang.code
               ? 'bg-red-800 text-white'
               : 'text-gray-500 hover:text-red-800'
-          }`}
+            }`}
         >
           {lang.label}
         </button>
@@ -214,7 +215,7 @@ const LanguageSwitcher = ({ onSelect }) => {
 };
 
 // --- BURGER MENU ---
-const BurgerMenu = ({ cartCount }) => {
+const BurgerMenu = ({ cartCount, darkMode, setDarkMode }) => {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
 
@@ -267,12 +268,21 @@ const BurgerMenu = ({ cartCount }) => {
             <LanguageSwitcher onSelect={() => setOpen(false)} />
           </div>
 
-          {/* 🌙 DARK MODE – hier einbauen */}
-          <div className="p-4 border-b border-gray-100">
+          {/* 🌙 DARK MODE */}
+          <div className="p-4 border-b border-gray-100 dark:border-gray-700">
             <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Darstellung</p>
-            <div className="px-3 py-2.5 rounded-xl bg-gray-50 text-gray-400 text-sm italic">
-              {/* TODO: Dark Mode Toggle hier einfügen */}
-              Dark Mode coming soon...
+            <div className="flex items-center justify-between px-3 py-2.5">
+              <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+                {darkMode ? '🌙 Dark Mode' : '☀️ Light Mode'}
+              </span>
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className={`relative w-12 h-6 rounded-full transition-all duration-300 ${darkMode ? 'bg-red-800' : 'bg-gray-200'
+                  }`}
+              >
+                <span className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow transition-all duration-300 ${darkMode ? 'left-7' : 'left-1'
+                  }`} />
+              </button>
             </div>
           </div>
 
@@ -337,15 +347,15 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50 flex flex-col font-sans selection:bg-red-100 selection:text-red-900">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col font-sans selection:bg-red-100 selection:text-red-900">
 
         {/* Navigation */}
-          <nav className="bg-white/90 backdrop-blur-md shadow-sm p-4 sticky top-0 z-50 flex justify-between items-center px-8 border-b border-gray-100">
-           <Link to="/" className="text-2xl font-bold text-red-800 tracking-tighter">
+        <nav className="bg-white/90 backdrop-blur-md shadow-sm p-4 sticky top-0 z-50 flex justify-between items-center px-8 border-b border-gray-100">
+          <Link to="/" className="text-2xl font-bold text-red-800 tracking-tighter">
             WINE & OIL
-            </Link>
-           <BurgerMenu cartCount={cartCount} />
-          </nav>
+          </Link>
+          <BurgerMenu cartCount={cartCount} darkMode={darkMode} setDarkMode={setDarkMode} />
+        </nav>
 
         <div className="flex-grow">
           <Routes>
