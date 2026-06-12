@@ -2,6 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 COPY WebShopBackend/ ./
 RUN dotnet publish WebshopBackend.csproj -c Release -o out
+RUN ls -la out/
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
