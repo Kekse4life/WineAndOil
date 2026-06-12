@@ -5,7 +5,6 @@ import { useRegionDetector } from './hooks/useRegionDetector'
 import { useDarkMode } from './hooks/useDarkMode';
 
 const euro = new Intl.NumberFormat('de-AT', { style: 'currency', currency: 'EUR' });
-const [darkMode, setDarkMode] = useDarkMode();
 
 // --- 1. KOMPONENTE: HOME ---
 const Home = () => {
@@ -307,6 +306,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [cartItems, setCartItems] = useState([]);
+  const [darkMode, setDarkMode] = useDarkMode();
   const { t } = useTranslation();
 
   useRegionDetector();
