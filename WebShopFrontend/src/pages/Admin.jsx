@@ -9,8 +9,13 @@ export default function Admin() {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [users, setUsers] = useState([]);
+  const [products, setProducts] = useState([]);
   const [activeTab, setActiveTab] = useState('orders');
   const [loading, setLoading] = useState(true);
+  const [editingProduct, setEditingProduct] = useState(null);
+  const [productForm, setProductForm] = useState({ name: '', price: '', category: '', description: '', imageUrl: '' });
+  const [uploading, setUploading] = useState(false);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (!user) { navigate('/login'); return; }
@@ -21,9 +26,11 @@ export default function Admin() {
     Promise.all([
       fetch(`${apiUrl}/api/admin/orders`, { headers }).then(r => r.json()),
       fetch(`${apiUrl}/api/admin/users`, { headers }).then(r => r.json()),
-    ]).then(([ordersData, usersData]) => {
+      fetch(`${apiUrl}/api/products`).then(r => r.json()),
+    ]).then(([ordersData, usersData, productsData]) => {
       setOrders(ordersData);
       setUsers(usersData);
+      setProducts(productsData);
     }).finally(() => setLoading(false));
   }, [user]);
 
@@ -43,6 +50,76 @@ export default function Admin() {
       body: JSON.stringify({ role })
     });
     setUsers(prev => prev.map(u => u.id === id ? { ...u, role } : u));
+  };
+
+  const handleImageUpload = async (file) => {
+    setUploading(true);
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+      const res = await fetch(`${apiUrl}/api/upload`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData
+      });
+      const data = await res.json();
+      setProductForm(prev => ({ ...prev, imageUrl: data.url }));
+    } catch {
+      alert('Bild-Upload fehlgeschlagen.');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const openNewProduct = () => {
+    setEditingProduct('new');
+    setProductForm({ name: '', price: '', category: '', description: '', imageUrl: '' });
+  };
+
+  const openEditProduct = (product) => {
+    setEditingProduct(product.id);
+    setProductForm({
+      name: product.name,
+      price: product.price,
+      category: product.category,
+      description: product.description ?? '',
+      imageUrl: product.imageUrl ?? ''
+    });
+  };
+
+  const saveProduct = async () => {
+    setSaving(true);
+    const body = JSON.stringify({
+      ...productForm,
+      price: parseFloat(productForm.price),
+      id: editingProduct === 'new' ? 0 : editingProduct
+    });
+    const headers = { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` };
+
+    try {
+      if (editingProduct === 'new') {
+        const res = await fetch(`${apiUrl}/api/products`, { method: 'POST', headers, body });
+        const newProduct = await res.json();
+        setProducts(prev => [...prev, newProduct]);
+      } else {
+        await fetch(`${apiUrl}/api/products/${editingProduct}`, { method: 'PUT', headers, body });
+        setProducts(prev => prev.map(p => p.id === editingProduct ? { ...p, ...productForm, price: parseFloat(productForm.price) } : p));
+      }
+      setEditingProduct(null);
+    } catch {
+      alert('Speichern fehlgeschlagen.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const deleteProduct = async (id) => {
+    if (!confirm('Produkt wirklich löschen?')) return;
+    await fetch(`${apiUrl}/api/products/${id}`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    setProducts(prev => prev.filter(p => p.id !== id));
   };
 
   const statusColor = (status) => {
@@ -75,18 +152,19 @@ export default function Admin() {
 
       {/* Tabs */}
       <div className="flex gap-2 mb-8 border-b border-gray-200 dark:border-gray-700">
-        <button
-          onClick={() => setActiveTab('orders')}
-          className={`px-6 py-3 font-semibold text-sm transition-all border-b-2 ${activeTab === 'orders' ? 'border-red-800 text-red-800 dark:text-red-400 dark:border-red-400' : 'border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
-        >
-          📦 Bestellungen ({orders.length})
-        </button>
-        <button
-          onClick={() => setActiveTab('users')}
-          className={`px-6 py-3 font-semibold text-sm transition-all border-b-2 ${activeTab === 'users' ? 'border-red-800 text-red-800 dark:text-red-400 dark:border-red-400' : 'border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
-        >
-          👥 User ({users.length})
-        </button>
+        {[
+          { id: 'orders', label: `📦 Bestellungen (${orders.length})` },
+          { id: 'products', label: `🛍️ Produkte (${products.length})` },
+          { id: 'users', label: `👥 User (${users.length})` },
+        ].map(tab => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`px-6 py-3 font-semibold text-sm transition-all border-b-2 ${activeTab === tab.id ? 'border-red-800 text-red-800 dark:text-red-400 dark:border-red-400' : 'border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
 
       {/* Bestellungen Tab */}
@@ -104,9 +182,7 @@ export default function Admin() {
                   <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">📍 {order.shippingAddress}, {order.shippingZip} {order.shippingCity}, {order.shippingCountry}</p>
                 </div>
                 <div className="flex flex-col gap-2 items-end">
-                  <span className={`px-3 py-1 rounded-full text-xs font-bold ${statusColor(order.status)}`}>
-                    {order.status}
-                  </span>
+                  <span className={`px-3 py-1 rounded-full text-xs font-bold ${statusColor(order.status)}`}>{order.status}</span>
                   <select
                     value={order.status}
                     onChange={e => updateOrderStatus(order.id, e.target.value)}
@@ -133,6 +209,126 @@ export default function Admin() {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Produkte Tab */}
+      {activeTab === 'products' && (
+        <div>
+          <div className="flex justify-end mb-4">
+            <button
+              onClick={openNewProduct}
+              className="px-4 py-2 bg-gray-900 dark:bg-gray-700 text-white rounded-xl font-semibold hover:bg-red-800 transition-all text-sm"
+            >
+              + Neues Produkt
+            </button>
+          </div>
+
+          {/* Produkt Formular */}
+          {editingProduct && (
+            <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-6 mb-6">
+              <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-4">
+                {editingProduct === 'new' ? 'Neues Produkt' : 'Produkt bearbeiten'}
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Name</label>
+                  <input
+                    value={productForm.name}
+                    onChange={e => setProductForm(prev => ({ ...prev, name: e.target.value }))}
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-800"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Preis (€)</label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={productForm.price}
+                    onChange={e => setProductForm(prev => ({ ...prev, price: e.target.value }))}
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-800"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Kategorie</label>
+                  <input
+                    value={productForm.category}
+                    onChange={e => setProductForm(prev => ({ ...prev, category: e.target.value }))}
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-800"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Bild</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={e => e.target.files[0] && handleImageUpload(e.target.files[0])}
+                    className="w-full px-4 py-2 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm"
+                  />
+                  {uploading && <p className="text-xs text-gray-500 mt-1">Bild wird hochgeladen…</p>}
+                  {productForm.imageUrl && (
+                    <img src={productForm.imageUrl} alt="Preview" className="mt-2 h-20 w-20 object-cover rounded-xl" />
+                  )}
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Beschreibung</label>
+                  <textarea
+                    value={productForm.description}
+                    onChange={e => setProductForm(prev => ({ ...prev, description: e.target.value }))}
+                    rows={3}
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-800"
+                  />
+                </div>
+              </div>
+              <div className="flex gap-3 mt-4">
+                <button
+                  onClick={saveProduct}
+                  disabled={saving || uploading}
+                  className="px-6 py-2.5 bg-gray-900 dark:bg-gray-700 text-white rounded-xl font-semibold hover:bg-red-800 transition-all text-sm disabled:opacity-50"
+                >
+                  {saving ? 'Speichern…' : 'Speichern'}
+                </button>
+                <button
+                  onClick={() => setEditingProduct(null)}
+                  className="px-6 py-2.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-semibold hover:bg-gray-200 transition-all text-sm"
+                >
+                  Abbrechen
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Produkt Liste */}
+          <div className="space-y-3">
+            {products.map(product => (
+              <div key={product.id} className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-5 flex justify-between items-center">
+                <div className="flex gap-4 items-center">
+                  {product.imageUrl && (
+                    <img src={product.imageUrl.startsWith('http') ? product.imageUrl : `/images/${product.imageUrl}`} alt={product.name} className="w-14 h-14 object-cover rounded-xl" />
+                  )}
+                  <div>
+                    <p className="font-bold text-gray-900 dark:text-gray-100">{product.name}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">{product.category} – € {product.price}</p>
+                    {product.description && <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{product.description}</p>}
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => openEditProduct(product)}
+                    className="px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl text-sm font-semibold hover:bg-gray-200 transition-all"
+                  >
+                    Bearbeiten
+                  </button>
+                  <button
+                    onClick={() => deleteProduct(product.id)}
+                    className="px-3 py-1.5 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 rounded-xl text-sm font-semibold hover:bg-red-100 transition-all"
+                  >
+                    Löschen
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
