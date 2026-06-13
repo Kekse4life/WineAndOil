@@ -2,11 +2,11 @@ import { useEffect, useMemo, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Account from './pages/Account'
 import { useTranslation } from 'react-i18next'
 import { useRegionDetector } from './hooks/useRegionDetector'
 import { useDarkMode } from './hooks/useDarkMode';
 import { useCurrencyDetector } from './hooks/useCurrencyDetector';
-
 const euro = new Intl.NumberFormat('de-AT', { style: 'currency', currency: 'EUR' });
 
 // --- 1. KOMPONENTE: HOME ---
@@ -228,6 +228,7 @@ const LanguageSwitcher = ({ onSelect }) => {
 const BurgerMenu = ({ cartCount, darkMode, setDarkMode, currency, changeCurrency, currencySymbols }) => {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
+  const { user } = useAuth();
 
   // Menu schließen wenn außerhalb geklickt
   useEffect(() => {
@@ -269,8 +270,8 @@ const BurgerMenu = ({ cartCount, darkMode, setDarkMode, currency, changeCurrency
               <Link to="/cart" onClick={() => setOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 text-gray-700 dark:text-gray-300 font-semibold transition-all">
                 🛒 {t('nav.cart')} ({cartCount})
               </Link>
-              <Link to="/login" onClick={() => setOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold transition-all">
-                👤 Anmelden
+              <Link to={user ? '/account' : '/login'} onClick={() => setOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold transition-all">
+                👤 {user ? user.name : 'Anmelden'}
               </Link>
             </div>
           </div>
@@ -395,6 +396,7 @@ function App() {
             <Route path="/impressum" element={<Impressum />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/account" element={<Account />} />
           </Routes>
         </div>
 
