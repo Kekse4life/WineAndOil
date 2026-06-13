@@ -122,3 +122,5 @@
 /home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
 /home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/Npgsql.dll
 /home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/CloudinaryDotNet.dll
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/Newtonsoft.Json.dll
