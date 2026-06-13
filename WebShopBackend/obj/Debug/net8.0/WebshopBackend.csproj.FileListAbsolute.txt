@@ -136,3 +136,12 @@
 /home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/staticwebassets.build.endpoints.json
 /home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/swae.build.ex.cache
 /home/daniel/Repositorie/WineAndOil/WebShopBackend/obj/Debug/net8.0/WebshopB.5564FD46.Up2Date
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/BCrypt.Net-Next.dll
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/home/daniel/Repositorie/WineAndOil/WebShopBackend/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
