@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Account from './pages/Account'
+import Admin from './pages/Admin'
 import { useAuth } from './context/AuthContext'
 import { useTranslation } from 'react-i18next'
 import { useRegionDetector } from './hooks/useRegionDetector'
@@ -398,6 +399,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </div>
 
