@@ -1,8 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
 
-// Übersetzungen importieren
 import de from './locales/de.json';
 import en from './locales/en.json';
 import fr from './locales/fr.json';
@@ -14,7 +12,6 @@ import bs from './locales/bs.json';
 import sl from './locales/sl.json';
 
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
@@ -28,11 +25,8 @@ i18n
       bs: { translation: bs },
       sl: { translation: sl },
     },
+    lng: 'en',
     fallbackLng: 'en',
-    detection: {
-      order: ['querystring', 'localStorage', 'navigator'],
-      caches: ['localStorage'],
-    },
     interpolation: {
       escapeValue: false,
     },

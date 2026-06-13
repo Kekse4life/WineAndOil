@@ -16,19 +16,19 @@ export function useRegionDetector() {
   const { i18n } = useTranslation();
 
   useEffect(() => {
-    // Nur überspringen wenn der User die Sprache manuell gesetzt hat
-    if (localStorage.getItem('userSelectedLang')) return;
+    if (localStorage.getItem('userSelectedLang')) {
+      i18n.changeLanguage(localStorage.getItem('userSelectedLang'));
+      return;
+    }
 
     fetch('https://ip-api.com/json/?fields=countryCode')
       .then(res => res.json())
       .then(data => {
         const lang = countryToLang[data.countryCode];
-        if (lang) {
-          i18n.changeLanguage(lang);
-        }
+        i18n.changeLanguage(lang ?? 'en');
       })
       .catch(() => {
-        // IP-API nicht erreichbar → Browser-Sprache bleibt
+        i18n.changeLanguage('en');
       });
   }, []);
 }
