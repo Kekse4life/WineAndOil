@@ -95,7 +95,7 @@ const Cart = ({ cartItems, updateQuantity, removeItem }) => {
   const { t } = useTranslation();
   const total = cartItems.reduce((s, i) => s + i.price * i.quantity, 0);
   return (
-    <main className="max-w-3xl mx-auto py-12 px-8 text-gray-900 dark:text-gray-100">
+    <main className="max-w-3xl mx-auto py-12 px-4 md:px-8 text-gray-900 dark:text-gray-100">
       <h2 className="text-3xl font-bold mb-8 font-serif">{t('cart.title')}</h2>
       {cartItems.length === 0 ? (
         <div className="text-center py-20 bg-white dark:bg-gray-800 rounded-2xl border-2 border-dashed border-gray-200 dark:border-gray-700">
@@ -105,17 +105,21 @@ const Cart = ({ cartItems, updateQuantity, removeItem }) => {
       ) : (
         <div className="space-y-4">
           {cartItems.map((item) => (
-            <div key={item.id} className="flex justify-between items-center bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
-              <div>
-                <p className="font-bold text-lg text-gray-900 dark:text-gray-100">{item.name}</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">{t('cart.subtitle')}</p>
+            <div key={item.id} className="flex flex-col gap-3 bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
+              <div className="flex justify-between items-start">
+                <div>
+                  <p className="font-bold text-lg text-gray-900 dark:text-gray-100">{item.name}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{t('cart.subtitle')}</p>
+                </div>
+                <button onClick={() => removeItem(item.id)} className="text-gray-400 dark:text-gray-500 hover:text-red-700 dark:hover:text-red-400" aria-label="Aus Warenkorb entfernen">✕</button>
               </div>
-              <div className="flex items-center gap-4">
-                <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 font-bold" aria-label="Menge verringern">−</button>
-                <span className="w-6 text-center text-gray-900 dark:text-gray-100">{item.quantity}</span>
-                <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 font-bold" aria-label="Menge erhöhen">+</button>
-                <p className="font-bold text-gray-900 dark:text-gray-100 w-24 text-right">{euro.format(item.price * item.quantity)}</p>
-                <button onClick={() => removeItem(item.id)} className="text-gray-400 dark:text-gray-500 hover:text-red-700 dark:hover:text-red-400 ml-2" aria-label="Aus Warenkorb entfernen">✕</button>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 font-bold" aria-label="Menge verringern">−</button>
+                  <span className="w-6 text-center text-gray-900 dark:text-gray-100">{item.quantity}</span>
+                  <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 font-bold" aria-label="Menge erhöhen">+</button>
+                </div>
+                <p className="font-bold text-gray-900 dark:text-gray-100">{euro.format(item.price * item.quantity)}</p>
               </div>
             </div>
           ))}
