@@ -138,7 +138,7 @@ namespace WebshopBackend.Migrations
                             Category = "Öl",
                             ImageUrl = "wine01.jpeg",
                             Name = "Premium Olivenöl",
-                            Price = 18.50m
+                            Price = 18.5m
                         },
                         new
                         {
@@ -146,7 +146,7 @@ namespace WebshopBackend.Migrations
                             Category = "Wein",
                             ImageUrl = "wine01.jpeg",
                             Name = "Rotwein Riserva",
-                            Price = 24.90m
+                            Price = 24.9m
                         },
                         new
                         {
@@ -154,7 +154,7 @@ namespace WebshopBackend.Migrations
                             Category = "Wein",
                             ImageUrl = "wine01.jpeg",
                             Name = "Weißwein Chardonnay",
-                            Price = 14.20m
+                            Price = 14.2m
                         },
                         new
                         {
@@ -162,7 +162,7 @@ namespace WebshopBackend.Migrations
                             Category = "Essig",
                             ImageUrl = "wine01.jpeg",
                             Name = "Balsamico Essig",
-                            Price = 12.00m
+                            Price = 12m
                         });
                 });
 
