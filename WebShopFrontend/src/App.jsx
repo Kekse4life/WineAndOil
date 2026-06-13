@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useRegionDetector } from './hooks/useRegionDetector'
 import { useDarkMode } from './hooks/useDarkMode';
+import { useCurrencyDetector } from './hooks/useCurrencyDetector';
 
 const euro = new Intl.NumberFormat('de-AT', { style: 'currency', currency: 'EUR' });
 
@@ -53,7 +54,7 @@ const Home = () => {
 };
 
 // --- 2. KOMPONENTE: SHOP ---
-const Shop = ({ products, loading, error, addToCart }) => {
+const Shop = ({ products, loading, error, addToCart, formatPrice }) => {
   const { t } = useTranslation();
   return (
     <main className="max-w-7xl mx-auto py-12 px-8">
@@ -74,7 +75,7 @@ const Shop = ({ products, loading, error, addToCart }) => {
               </div>
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 group-hover:text-red-800 dark:group-hover:text-red-400 transition-colors">{product.name}</h3>
-                <p className="text-2xl font-light text-gray-900 dark:text-gray-100 mt-auto">{euro.format(product.price)}</p>
+                <p className="text-2xl font-light text-gray-900 dark:text-gray-100 mt-auto">{formatPrice(product.price)}</p>
                 <button
                   onClick={() => addToCart(product)}
                   className="w-full mt-6 bg-gray-900 dark:bg-gray-700 text-white py-3 rounded-xl hover:bg-red-800 dark:hover:bg-red-700 transition-all font-semibold active:scale-95 shadow-md shadow-gray-200 dark:shadow-gray-900"
@@ -91,7 +92,7 @@ const Shop = ({ products, loading, error, addToCart }) => {
 };
 
 // --- 3. KOMPONENTE: WARENKORB ---
-const Cart = ({ cartItems, updateQuantity, removeItem }) => {
+const Cart = ({ cartItems, updateQuantity, removeItem, formatPrice }) => {
   const { t } = useTranslation();
   const total = cartItems.reduce((s, i) => s + i.price * i.quantity, 0);
   return (
@@ -119,14 +120,14 @@ const Cart = ({ cartItems, updateQuantity, removeItem }) => {
                   <span className="w-6 text-center text-gray-900 dark:text-gray-100">{item.quantity}</span>
                   <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 font-bold" aria-label="Menge erhöhen">+</button>
                 </div>
-                <p className="font-bold text-gray-900 dark:text-gray-100">{euro.format(item.price * item.quantity)}</p>
+                <p className="font-bold text-gray-900 dark:text-gray-100">{formatPrice(item.price * item.quantity)}</p>
               </div>
             </div>
           ))}
           <div className="bg-gray-900 dark:bg-gray-700 text-white p-8 rounded-3xl mt-12 shadow-2xl">
             <div className="flex justify-between text-xl font-bold border-b border-gray-700 dark:border-gray-600 pb-4 mb-6">
               <span>{t('cart.total')}</span>
-              <span>{euro.format(total)}</span>
+              <span>{formatPrice(total)}</span>
             </div>
             <button className="w-full bg-red-800 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-600 py-4 rounded-xl font-bold transition-all transform active:scale-[0.98]">
               {t('cart.checkout', 'Sicher zur Kasse gehen')}
@@ -222,7 +223,7 @@ const LanguageSwitcher = ({ onSelect }) => {
 };
 
 // --- BURGER MENU ---
-const BurgerMenu = ({ cartCount, darkMode, setDarkMode }) => {
+const BurgerMenu = ({ cartCount, darkMode, setDarkMode, currency, changeCurrency, currencySymbols }) => {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
 
@@ -293,15 +294,24 @@ const BurgerMenu = ({ cartCount, darkMode, setDarkMode }) => {
             </div>
           </div>
 
-          {/* 💱 WÄHRUNG – hier einbauen */}
+          {/* 💱 WÄHRUNG */}
           <div className="p-4">
             <p className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-3">Währung</p>
-            <div className="px-3 py-2.5 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-400 dark:text-gray-500 text-sm italic">
-              {/* TODO: Currency Switcher hier einfügen */}
-              Currency Switcher coming soon...
+            <div className="flex flex-wrap gap-1">
+              {Object.keys(currencySymbols).map((cur) => (
+                <button
+                  key={cur}
+                  onClick={() => changeCurrency(cur)}
+                  className={`px-2 py-1 text-xs rounded font-bold transition-all ${currency === cur
+                    ? 'bg-red-800 text-white'
+                    : 'text-gray-500 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-400'
+                    }`}
+                >
+                  {cur}
+                </button>
+              ))}
             </div>
           </div>
-
         </div>
       )}
     </div>
@@ -316,8 +326,8 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [darkMode, setDarkMode] = useDarkMode();
   const { t } = useTranslation();
-
   useRegionDetector();
+  const { currency, formatPrice, changeCurrency, currencySymbols } = useCurrencyDetector();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -362,14 +372,21 @@ function App() {
           <Link to="/" className="text-2xl font-bold text-red-800 dark:text-red-400 tracking-tighter">
             WINE & OIL
           </Link>
-          <BurgerMenu cartCount={cartCount} darkMode={darkMode} setDarkMode={setDarkMode} />
+          <BurgerMenu
+            cartCount={cartCount}
+            darkMode={darkMode}
+            setDarkMode={setDarkMode}
+            currency={currency}
+            changeCurrency={changeCurrency}
+            currencySymbols={currencySymbols}
+          />
         </nav>
 
         <div className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/shop" element={<Shop products={products} loading={loading} error={error} addToCart={addToCart} />} />
-            <Route path="/cart" element={<Cart cartItems={cartItems} updateQuantity={updateQuantity} removeItem={removeItem} />} />
+            <Route path="/shop" element={<Shop products={products} loading={loading} error={error} addToCart={addToCart} formatPrice={formatPrice} />} />
+            <Route path="/cart" element={<Cart cartItems={cartItems} updateQuantity={updateQuantity} removeItem={removeItem} formatPrice={formatPrice} />} />
             <Route path="/impressum" element={<Impressum />} />
           </Routes>
         </div>
