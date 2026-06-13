@@ -10,10 +10,14 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("FrontendPolicy", policy =>
     {
-        var origin = builder.Configuration["Cors:FrontendOrigin"] ?? "http://localhost:5173";
-        policy.WithOrigins(origin)
-              .AllowAnyMethod()
-              .AllowAnyHeader();
+        policy.WithOrigins(
+            "https://wineandoil.shop",
+            "https://www.wineandoil.shop",
+            "https://wine-and-oil-48an.vercel.app",
+            "http://localhost:5173"
+        )
+        .AllowAnyMethod()
+        .AllowAnyHeader();
     });
 });
 
