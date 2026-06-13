@@ -7,7 +7,7 @@ using WebShopBackend.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ShopContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("Default")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 
 builder.Services.AddCors(options =>
 {
