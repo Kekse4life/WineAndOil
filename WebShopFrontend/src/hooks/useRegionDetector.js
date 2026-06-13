@@ -16,8 +16,8 @@ export function useRegionDetector() {
   const { i18n } = useTranslation();
 
   useEffect(() => {
-    // Wenn schon eine Sprache gespeichert ist, nichts tun
-    if (localStorage.getItem('i18nextLng')) return;
+    // Nur überspringen wenn der User die Sprache manuell gesetzt hat
+    if (localStorage.getItem('userSelectedLang')) return;
 
     fetch('https://ip-api.com/json/?fields=countryCode')
       .then(res => res.json())
@@ -26,7 +26,6 @@ export function useRegionDetector() {
         if (lang) {
           i18n.changeLanguage(lang);
         }
-        // Kein Match → Browser-Sprache bleibt (Fallback durch i18next)
       })
       .catch(() => {
         // IP-API nicht erreichbar → Browser-Sprache bleibt

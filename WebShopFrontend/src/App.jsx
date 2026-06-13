@@ -204,10 +204,14 @@ const LanguageSwitcher = ({ onSelect }) => {
       {languages.map((lang) => (
         <button
           key={lang.code}
-          onClick={() => { i18n.changeLanguage(lang.code); onSelect?.(); }}
+          onClick={() => {
+            localStorage.setItem('userSelectedLang', lang.code);
+            i18n.changeLanguage(lang.code);
+            onSelect?.();
+          }}
           className={`px-2 py-1 text-xs rounded font-bold transition-all ${i18n.language === lang.code
-              ? 'bg-red-800 text-white'
-              : 'text-gray-500 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-400'
+            ? 'bg-red-800 text-white'
+            : 'text-gray-500 dark:text-gray-400 hover:text-red-800 dark:hover:text-red-400'
             }`}
         >
           {lang.label}
