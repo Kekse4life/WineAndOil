@@ -49,28 +49,28 @@ public class AuthController : ControllerBase
             return Unauthorized("Email oder Passwort falsch.");
 
         var token = GenerateToken(user);
-        return Ok(new { token, user = new { user.Id, user.Email, user.Name, user.IsAdmin } });
+        return Ok(new { token, user = new { user.Id, user.Email, user.Name, user.Role } });
     }
 
     private string GenerateToken(User user)
+{
+    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Secret"]!));
+    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+    var claims = new[]
     {
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Secret"]!));
-        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-        var claims = new[]
-        {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Role, user.IsAdmin ? "Admin" : "User")
-        };
+        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+        new Claim(ClaimTypes.Email, user.Email),
+        new Claim(ClaimTypes.Role, user.Role)
+    };
 
-        var token = new JwtSecurityToken(
-            claims: claims,
-            expires: DateTime.UtcNow.AddDays(7),
-            signingCredentials: creds
-        );
+    var token = new JwtSecurityToken(
+        claims: claims,
+        expires: DateTime.UtcNow.AddDays(7),
+        signingCredentials: creds
+    );
 
-        return new JwtSecurityTokenHandler().WriteToken(token);
-    }
+    return new JwtSecurityTokenHandler().WriteToken(token);
+}
 }
 
 public record RegisterDto(string Email, string Name, string Password);

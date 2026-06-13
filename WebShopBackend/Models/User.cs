@@ -9,7 +9,7 @@ public class User
     public string Name { get; set; } = string.Empty;
     [Required]
     public string PasswordHash { get; set; } = string.Empty;
-    public bool IsAdmin { get; set; } = false;
+    public string Role { get; set; } = "normal";
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public List<Order> Orders { get; set; } = new();
 }

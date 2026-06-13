@@ -8,7 +8,7 @@ namespace WebShopBackend.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = "diamond")]
 public class AdminController : ControllerBase
 {
     private readonly ShopContext _db;
@@ -47,22 +47,23 @@ public class AdminController : ControllerBase
     public async Task<IActionResult> GetUsers()
     {
         var users = await _db.Users
-            .Select(u => new { u.Id, u.Email, u.Name, u.IsAdmin, u.CreatedAt })
+            .Select(u => new { u.Id, u.Email, u.Name, u.Role, u.CreatedAt })
             .ToListAsync();
         return Ok(users);
     }
 
     // User zum Admin machen
-    [HttpPut("users/{id:int}/admin")]
-    public async Task<IActionResult> SetAdmin(int id, SetAdminDto dto)
-    {
-        var user = await _db.Users.FindAsync(id);
-        if (user is null) return NotFound();
-        user.IsAdmin = dto.IsAdmin;
-        await _db.SaveChangesAsync();
-        return NoContent();
-    }
+    [HttpPut("users/{id:int}/role")]
+public async Task<IActionResult> SetRole(int id, SetRoleDto dto)
+{
+    var user = await _db.Users.FindAsync(id);
+    if (user is null) return NotFound();
+    user.Role = dto.Role;
+    await _db.SaveChangesAsync();
+    return NoContent();
+}
+
 }
 
 public record UpdateStatusDto(string Status);
-public record SetAdminDto(bool IsAdmin);
+public record SetRoleDto(string Role);
