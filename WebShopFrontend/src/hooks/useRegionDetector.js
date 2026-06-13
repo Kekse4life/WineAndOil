@@ -16,15 +16,17 @@ export function useRegionDetector() {
   const { i18n } = useTranslation();
 
   useEffect(() => {
-    if (localStorage.getItem('userSelectedLang')) {
-      i18n.changeLanguage(localStorage.getItem('userSelectedLang'));
+    const userSelected = localStorage.getItem('userSelectedLang');
+
+    if (userSelected) {
+      i18n.changeLanguage(userSelected);
       return;
     }
 
-    fetch('https://ip-api.com/json/?fields=countryCode')
+    fetch('https://ipapi.co/json/')
       .then(res => res.json())
       .then(data => {
-        const lang = countryToLang[data.countryCode];
+        const lang = countryToLang[data.country_code];
         i18n.changeLanguage(lang ?? 'en');
       })
       .catch(() => {
