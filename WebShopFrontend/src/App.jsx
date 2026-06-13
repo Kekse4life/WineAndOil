@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import Login from './pages/Login'
+import Register from './pages/Register'
 import { useTranslation } from 'react-i18next'
 import { useRegionDetector } from './hooks/useRegionDetector'
 import { useDarkMode } from './hooks/useDarkMode';
@@ -267,6 +269,9 @@ const BurgerMenu = ({ cartCount, darkMode, setDarkMode, currency, changeCurrency
               <Link to="/cart" onClick={() => setOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 text-gray-700 dark:text-gray-300 font-semibold transition-all">
                 🛒 {t('nav.cart')} ({cartCount})
               </Link>
+              <Link to="/login" onClick={() => setOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold transition-all">
+                👤 Anmelden
+              </Link>
             </div>
           </div>
 
@@ -388,6 +393,8 @@ function App() {
             <Route path="/shop" element={<Shop products={products} loading={loading} error={error} addToCart={addToCart} formatPrice={formatPrice} />} />
             <Route path="/cart" element={<Cart cartItems={cartItems} updateQuantity={updateQuantity} removeItem={removeItem} formatPrice={formatPrice} />} />
             <Route path="/impressum" element={<Impressum />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </div>
 
