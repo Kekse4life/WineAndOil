@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Account from './pages/Account'
+import { useAuth } from './context/AuthContext'
 import { useTranslation } from 'react-i18next'
 import { useRegionDetector } from './hooks/useRegionDetector'
 import { useDarkMode } from './hooks/useDarkMode';
