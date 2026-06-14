@@ -32,7 +32,6 @@ builder.Services.AddCors(options =>
         .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
         .WithHeaders("Content-Type", "Authorization")
         .AllowCredentials();
-        .AccessControlAllowOrigin("https://wineandoil.shop")
     });
 });
 
