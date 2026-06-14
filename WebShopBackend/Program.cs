@@ -29,8 +29,8 @@ builder.Services.AddCors(options =>
             "https://wine-and-oil-48an.vercel.app",
             "http://localhost:5173"
         )
-        .AllowAnyMethod()
-        .AllowAnyHeader()
+        .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+        .WithHeaders("Content-Type", "Authorization")
         .AllowCredentials();
     });
 });
