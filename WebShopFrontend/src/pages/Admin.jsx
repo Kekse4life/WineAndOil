@@ -56,14 +56,15 @@ export default function Admin() {
     setUploading(true);
     const formData = new FormData();
     formData.append('file', file);
+    formData.append('upload_preset', 'wineandoil');
+
     try {
-      const res = await fetch(`${apiUrl}/api/upload`, {
+      const res = await fetch(`https://api.cloudinary.com/v1_1/dryrzhx6l/image/upload`, {
         method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
         body: formData
       });
       const data = await res.json();
-      setProductForm(prev => ({ ...prev, imageUrl: data.url }));
+      setProductForm(prev => ({ ...prev, imageUrl: data.secure_url }));
     } catch {
       alert('Bild-Upload fehlgeschlagen.');
     } finally {
