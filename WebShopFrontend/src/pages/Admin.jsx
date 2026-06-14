@@ -12,6 +12,7 @@ export default function Admin() {
   const [products, setProducts] = useState([]);
   const [activeTab, setActiveTab] = useState('orders');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [editingProduct, setEditingProduct] = useState(null);
   const [productForm, setProductForm] = useState({ name: '', price: '', category: '', description: '', imageUrl: '' });
   const [uploading, setUploading] = useState(false);
@@ -26,11 +27,19 @@ export default function Admin() {
     Promise.all([
       fetch(`${apiUrl}/api/admin/orders`, { headers }).then(r => r.json()),
       fetch(`${apiUrl}/api/admin/users`, { headers }).then(r => r.json()),
-      fetch(`${apiUrl}/api/products`).then(r => r.json()),
+      fetch(`${apiUrl}/api/products`).then(r => {
+        if (!r.ok) throw new Error(`Products API returned ${r.status}`);
+        return r.json();
+      }),
     ]).then(([ordersData, usersData, productsData]) => {
+      console.log('Products loaded:', productsData);
       setOrders(ordersData);
       setUsers(usersData);
       setProducts(productsData);
+      setError(null);
+    }).catch(err => {
+      console.error('Error loading admin data:', err);
+      setError(`Fehler beim Laden der Daten: ${err.message}`);
     }).finally(() => setLoading(false));
   }, [user]);
 
@@ -134,6 +143,8 @@ export default function Admin() {
   };
 
   if (loading) return <main className="flex items-center justify-center min-h-[70vh]"><p className="text-gray-500 italic">Laden…</p></main>;
+
+  if (error) return <main className="max-w-6xl mx-auto py-12 px-4"><div className="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-700 rounded-2xl p-6"><p className="text-red-800 dark:text-red-300 font-semibold">{error}</p></div></main>;
 
   return (
     <main className="max-w-6xl mx-auto py-12 px-4 md:px-8">
