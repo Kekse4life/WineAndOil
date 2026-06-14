@@ -27,7 +27,8 @@
   "cart": {
     "title": "Vaša Korpa",
     "total": "Ukupno:",
-    "subtitle": "Ekskluzivni Zanat"
+    "subtitle": "Ekskluzivni Zanat",
+    "checkout": "Nastavi na blagajnu"
   },
   "footer": {
     "home": "Početna",

@@ -27,7 +27,8 @@
   "cart": {
     "title": "Votre Panier",
     "total": "Total:",
-    "subtitle": "Artisanat Exclusif"
+    "subtitle": "Artisanat Exclusif",
+    "checkout": "Passer à la caisse"
   },
   "footer": {
     "home": "Accueil",

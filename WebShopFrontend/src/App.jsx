@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Account from './pages/Account'
 import Admin from './pages/Admin'
+import Checkout from './pages/Checkout'
 import { useAuth } from './context/AuthContext'
 import { useTranslation } from 'react-i18next'
 import { useRegionDetector } from './hooks/useRegionDetector'
@@ -75,7 +76,7 @@ const Shop = ({ products, loading, error, addToCart, formatPrice }) => {
           {products.map((product) => (
             <div key={product.id} className="group bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700 overflow-hidden flex flex-col">
               <div className="h-48 bg-gray-50 dark:bg-gray-700 flex items-center justify-center italic text-gray-300 dark:text-gray-600 border-b border-gray-50 dark:border-gray-700 text-sm">
-                <img src={product.imageUrl?.startsWith('http') ? product.imageUrl : `/images/${product.imageUrl}`} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+                <img src={product.imageUrl?.startsWith('http') ? product.imageUrl : `/images/${product.imageUrl}`} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
               </div>
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 group-hover:text-red-800 dark:group-hover:text-red-400 transition-colors">{product.name}</h3>
@@ -133,9 +134,9 @@ const Cart = ({ cartItems, updateQuantity, removeItem, formatPrice }) => {
               <span>{t('cart.total')}</span>
               <span>{formatPrice(total)}</span>
             </div>
-            <button className="w-full bg-red-800 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-600 py-4 rounded-xl font-bold transition-all transform active:scale-[0.98]">
-              {t('cart.checkout', 'Sicher zur Kasse gehen')}
-            </button>
+            <Link to="/checkout" className="block w-full bg-red-800 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-600 py-4 rounded-xl font-bold transition-all transform active:scale-[0.98] text-center text-white">
+              {t('cart.checkout')}
+            </Link>
           </div>
         </div>
       )}
@@ -336,6 +337,7 @@ function App() {
   const { t } = useTranslation();
   useRegionDetector();
   const { currency, formatPrice, changeCurrency, currencySymbols } = useCurrencyDetector();
+  const clearCart = () => setCartItems([]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -400,6 +402,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/account" element={<Account />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/checkout" element={<Checkout cartItems={cartItems} clearCart={clearCart} formatPrice={formatPrice} />} />
           </Routes>
         </div>
 

@@ -27,7 +27,8 @@
   "cart": {
     "title": "Il Tuo Carrello",
     "total": "Totale:",
-    "subtitle": "Artigianato Esclusivo"
+    "subtitle": "Artigianato Esclusivo",
+    "checkout": "Procedi al pagamento"
   },
   "footer": {
     "home": "Home",

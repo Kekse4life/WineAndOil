@@ -27,7 +27,8 @@
   "cart": {
     "title": "Tu Carrito",
     "total": "Total:",
-    "subtitle": "Artesanía Exclusiva"
+    "subtitle": "Artesanía Exclusiva",
+    "checkout": "Proceder al pago"
   },
   "footer": {
     "home": "Inicio",

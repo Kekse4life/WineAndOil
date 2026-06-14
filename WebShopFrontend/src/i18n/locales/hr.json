@@ -27,7 +27,8 @@
   "cart": {
     "title": "Vaša Košarica",
     "total": "Ukupno:",
-    "subtitle": "Ekskluzivni Obrt"
+    "subtitle": "Ekskluzivni Obrt",
+    "checkout": "Nastavi na blagajnu"
   },
   "footer": {
     "home": "Početna",

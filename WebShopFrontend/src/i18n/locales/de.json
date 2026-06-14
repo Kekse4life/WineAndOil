@@ -27,7 +27,8 @@
   "cart": {
     "title": "Dein Warenkorb",
     "total": "Gesamtsumme:",
-    "subtitle": "Exklusive Handarbeit"
+    "subtitle": "Exklusive Handarbeit",
+    "checkout": "Sicher zur Kasse gehen"
   },
   "footer": {
     "home": "Startseite",

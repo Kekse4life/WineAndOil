@@ -27,7 +27,8 @@
   "cart": {
     "title": "Vaša Košarica",
     "total": "Skupaj:",
-    "subtitle": "Ekskluzivno Obrtništvo"
+    "subtitle": "Ekskluzivno Obrtništvo",
+    "checkout": "Nadaljuj na blagajno"
   },
   "footer": {
     "home": "Domov",
