@@ -75,7 +75,7 @@ const Shop = ({ products, loading, error, addToCart, formatPrice }) => {
           {products.map((product) => (
             <div key={product.id} className="group bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700 overflow-hidden flex flex-col">
               <div className="h-48 bg-gray-50 dark:bg-gray-700 flex items-center justify-center italic text-gray-300 dark:text-gray-600 border-b border-gray-50 dark:border-gray-700 text-sm">
-                <img src={`/images/${product.imageUrl}`} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <img src={product.imageUrl?.startsWith('http') ? product.imageUrl : `/images/${product.imageUrl}`} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
               </div>
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 group-hover:text-red-800 dark:group-hover:text-red-400 transition-colors">{product.name}</h3>
